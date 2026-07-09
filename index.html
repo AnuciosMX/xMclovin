@@ -6,29 +6,40 @@
     <title>xMclovin KEYS</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-        html, body { width: 100%; height: 100%; background-color: #050508; color: #fff; overflow: hidden; }
-        body { display: flex; flex-direction: column; min-height: 100vh; }
+        html, body { width: 100%; height: 100%; color: #fff; overflow: hidden; }
+        
+        /* Fondo Premium Azul a Negro */
+        body { display: flex; flex-direction: column; min-height: 100vh; background: radial-gradient(circle at center, #07162c 0%, #02050a 100%); }
 
         #particles-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
 
         .wrapper { position: relative; z-index: 2; width: 100%; flex-grow: 1; display: flex; flex-direction: column; padding: 20px; justify-content: center; align-items: center; }
         header { text-align: center; margin-bottom: 20px; }
-        h1 { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: 4px; text-transform: uppercase; text-shadow: 0 0 15px rgba(255,255,255,0.3); }
-        .subtitle { font-size: 10px; color: #ff0055; letter-spacing: 4px; margin-top: 5px; text-transform: uppercase; }
+        
+        /* --- EFECTO GLITCH EN TEXTOS --- */
+        h1 { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: 4px; text-transform: uppercase; position: relative; animation: glitch 3s infinite; text-shadow: 0 0 15px rgba(0, 150, 255, 0.6); }
+        .subtitle { font-size: 10px; color: #ff0055; letter-spacing: 4px; margin-top: 5px; text-transform: uppercase; animation: glitch 4s infinite reverse; }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 2px 2px 0px #ff0055, -2px -2px 0px #00ffff; }
+            50% { text-shadow: -2px 2px 0px #00ffff, 2px -2px 0px #ff0055; }
+            25%, 75% { text-shadow: 1px -1px 4px rgba(255,255,255,0.5); }
+        }
 
         .status-bar { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #00ff55; margin-bottom: 15px; text-transform: uppercase; }
         .status-dot { width: 6px; height: 6px; background-color: #00ff55; border-radius: 50%; box-shadow: 0 0 8px #00ff55; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
-        .section-flow { display: none; width: 100%; max-width: 360px; background: rgba(15, 15, 20, 0.9); border: 1px solid #222; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        /* --- EFECTO 3D HD EN BORDES --- */
+        .section-flow { display: none; width: 100%; max-width: 360px; background: rgba(10, 20, 35, 0.85); border: 2px solid rgba(0, 150, 255, 0.4); border-radius: 15px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(0, 150, 255, 0.2), 0 0 20px rgba(0, 150, 255, 0.3); backdrop-filter: blur(8px); }
         .section-flow.active { display: block; animation: fadeIn 0.5s ease; }
 
-        .btn-premium { display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff; color: #000; border: none; padding: 14px; font-size: 12px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; text-transform: uppercase; margin-bottom: 10px; transition: 0.3s; }
-        .btn-premium:disabled { background: #222; color: #555; cursor: not-allowed; }
+        .btn-premium { display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff; color: #000; border: none; padding: 14px; font-size: 12px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; text-transform: uppercase; margin-bottom: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .btn-premium:disabled { background: #222; color: #555; cursor: not-allowed; border: none; }
         .btn-premium svg { width: 16px; height: 16px; fill: currentColor; }
-        .btn-secondary { background: transparent; border: 1px solid #444; color: #fff; }
+        .btn-secondary { background: transparent; border: 1px solid #444; color: #fff; box-shadow: none; }
         
-        .key-box { position: relative; background: #000; border: 1px solid #ff0055; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 18px; color: #00ffff; text-align: center; margin: 15px 0 10px 0; overflow: hidden; }
+        .key-box { position: relative; background: #000; border: 2px solid #ff0055; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 18px; color: #00ffff; text-align: center; margin: 15px 0 10px 0; overflow: hidden; box-shadow: 0 0 15px rgba(255, 0, 85, 0.3), inset 0 0 10px rgba(255, 0, 85, 0.2); }
         .key-box::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, transparent, #ff0055, transparent); animation: scan 2s linear infinite; }
         @keyframes scan { 0% { top: 0%; } 50% { top: 100%; } 100% { top: 0%; } }
         
@@ -61,6 +72,7 @@
             <div class="subtitle">SECURITY ACCESS SYSTEM</div>
         </header>
 
+        <!-- SECCIÓN 1 -->
         <div id="section1" class="section-flow active">
             <button class="btn-premium" id="sub-btn-1" onclick="verifyAction(this, 1)">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -69,6 +81,7 @@
             <button class="btn-premium btn-secondary" id="btn-next-1" disabled onclick="transitionToSection(1, 2)">CONTINUAR</button>
         </div>
 
+        <!-- SECCIÓN 2 -->
         <div id="section2" class="section-flow">
             <button class="btn-premium" id="sub-btn-2" onclick="verifyAction(this, 2)">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -81,6 +94,7 @@
             <button class="btn-premium btn-secondary" id="btn-next-2" disabled onclick="transitionToSection(2, 3)">AVANZAR</button>
         </div>
 
+        <!-- SECCIÓN 3 -->
         <div id="section3" class="section-flow">
             <button class="btn-premium" id="sub-btn-4" onclick="verifyAction(this, 4)">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -93,6 +107,7 @@
             <button class="btn-premium" id="btn-final-unlock" disabled style="background:#ff0055; color:#fff;" onclick="transitionToLoader()">GENERAR KEY</button>
         </div>
 
+        <!-- PANTALLA GENERAL DE CARGA / VERIFICACIÓN -->
         <div id="section-loader" class="section-flow">
             <div class="loader-content">
                 <div class="spinner"></div>
@@ -100,6 +115,7 @@
             </div>
         </div>
 
+        <!-- SECCIÓN FINAL -->
         <div id="section-final" class="section-flow">
             <h3 style="text-align:center; font-size: 14px;">LLAVE GENERADA Por xMclovin Vip ✅</h3>
             <div class="key-box" id="key-output">...</div>
@@ -117,7 +133,7 @@
     <footer>[ xMclovin DEVELOPER &copy; 2026 ]</footer>
 
     <script>
-        // CORRECCIÓN AQUÍ: Se añadieron los corchetes [ ] para convertirlo en una lista (Array) válida de JavaScript
+        // CORREGIDO: Declarado correctamente usando corchetes de array []
         const validKeys = [
             "Hyper-SYS-00FF9D2A", "Hyper-BYPASS-7F4A88C1", "Hyper-CORE-3301X999", 
             "Hyper-SHIELD-V77X8492", "Hyper-NET-884967A0B2", "xMclo-TOKEN-FF9D2A8C", 
@@ -161,76 +177,128 @@
             } catch (e) { console.log("Audio bloqueado"); }
         }
 
-        // --- FONDO ANIMADO ---
+        // --- CANVAS DE PARTÍCULAS INTERCONECTADAS Y SERPIENTES ---
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        
+        let points = [];
+        let snakes = [];
 
-        let stars = Array.from({length: 30}, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 8 + 3,
-            speed: Math.random() * 0.5 + 0.2,
-            hue: Math.random() * 360
-        }));
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Generar nodos de la red
+            points = Array.from({length: 45}, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.4, // Movimiento lento
+                vy: (Math.random() - 0.5) * 0.4
+            }));
 
-        function drawStar(x, y, r, hue) {
-            ctx.beginPath();
-            ctx.fillStyle = `hsl(${hue}, 100%, 70%)`;
-            for (let i = 0; i < 5; i++) {
-                ctx.lineTo(x + r * Math.cos((i * 4 * Math.PI) / 5), y + r * Math.sin((i * 4 * Math.PI) / 5));
-            }
-            ctx.closePath();
-            ctx.fill();
+            // Configurar 2 serpientes que se persiguen
+            snakes = [
+                { angle: 0, radius: 90, speed: 0.015, hue: 0, history: [] },
+                { angle: Math.PI, radius: 75, speed: 0.012, hue: 180, history: [] }
+            ];
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            stars.forEach(s => {
-                drawStar(s.x, s.y, s.size, s.hue);
-                s.y += s.speed; 
-                s.hue = (s.hue + 1) % 360; 
-                if (s.y > canvas.height) s.y = -20;
+            
+            // 1. Dibujar Red de Partículas
+            ctx.fillStyle = "rgba(0, 150, 255, 0.5)";
+            points.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Conectar líneas con nodos cercanos
+                for (let j = i + 1; j < points.length; j++) {
+                    let dx = points[j].x - p.x;
+                    let dy = points[j].y - p.y;
+                    let dist = Math.hypot(dx, dy);
+
+                    if (dist < 120) {
+                        ctx.strokeStyle = `rgba(0, 136, 255, ${1 - dist / 120})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(points[j].x, points[j].y);
+                        ctx.stroke();
+                    }
+                }
             });
+
+            // 2. Dibujar las Serpientes Pequeñas Girando Cambiando de Color Lento
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            snakes.forEach((snake) => {
+                snake.angle += snake.speed;
+                snake.hue = (snake.hue + 0.5) % 360;
+
+                // Coordenadas actuales orbitando el centro
+                let sx = centerX + Math.cos(snake.angle) * snake.radius;
+                let sy = centerY + Math.sin(snake.angle) * snake.radius;
+
+                // Guardar rastro del cuerpo
+                snake.history.push({ x: sx, y: sy });
+                if (snake.history.length > 12) {
+                    snake.history.shift();
+                }
+
+                // Dibujar segmentos de la serpiente
+                snake.history.forEach((pos, idx) => {
+                    let size = (idx / snake.history.length) * 4.5; // Cabeza más grande que la cola
+                    ctx.beginPath();
+                    ctx.fillStyle = `hsl(${snake.hue}, 100%, 60%)`;
+                    ctx.arc(pos.x, pos.y, size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            });
+
             requestAnimationFrame(animate);
         }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
         animate();
 
-        // --- NUEVA LÓGICA: VERIFICACIÓN SIMULADA DE BOTONES DE SUSCRIPCIÓN ---
+        // --- LÓGICA DE SUSCRIPCIÓN Y VERIFICACIÓN ---
         function verifyAction(buttonElement, buttonIndex) {
             playSound('click');
             window.open("https://youtube.com/@xmclovin7049?si=G96qC2AEeMqbhhI7", "_blank");
             
-            // Guardamos la sección activa actual para regresar a ella
             const currentSection = document.getElementById('section' + currentSectionId);
             currentSection.classList.remove('active');
             
-            // Mostramos la pantalla de carga con texto dinámico de verificación
             document.getElementById('loader-message').textContent = "Verificando Suscripción...";
             document.getElementById('section-loader').classList.add('active');
 
             setTimeout(() => {
-                // Al terminar los 2 segundos, quitamos la carga y regresamos a la sección
                 document.getElementById('section-loader').classList.remove('active');
                 currentSection.classList.add('active');
                 playSound('success');
 
-                // Cambiamos el diseño del botón presionado a Verde/Verificado
                 buttonElement.innerHTML = "VERIFICADO ✅";
                 buttonElement.style.background = "#00ff55";
                 buttonElement.style.color = "#000";
-                buttonElement.disabled = true; // Evita que lo presionen repetidamente
+                buttonElement.disabled = true;
 
                 count++;
-                // Activación de los botones de avanzar según los clics acumulados
                 if(count >= 1) document.getElementById('btn-next-1').disabled = false;
                 if(count >= 3) document.getElementById('btn-next-2').disabled = false;
                 if(count >= 5) document.getElementById('btn-final-unlock').disabled = false;
             }, 2000);
         }
 
-        // --- NUEVA LÓGICA: CARGA AL PASAR DE SECCIÓN (CONTINUAR / AVANZAR) ---
         function transitionToSection(current, next) {
             playSound('click');
             document.getElementById('section' + current).classList.remove('active');
@@ -241,17 +309,16 @@
             setTimeout(() => {
                 document.getElementById('section-loader').classList.remove('active');
                 document.getElementById('section' + next).classList.add('active');
-                currentSectionId = next; // Actualizamos la sección global en la que estamos
+                currentSectionId = next;
                 playSound('success');
             }, 2000);
         }
 
-        // --- CARGA FINAL PARA GENERAR LA KEY ---
         function transitionToLoader() {
             playSound('click');
             document.getElementById('section3').classList.remove('active');
             
-            document.getElementById('loader-message').textContent = "Generando Llave Segura... ";
+            document.getElementById('loader-message').textContent = "Generando Llave Segura...";
             document.getElementById('section-loader').classList.add('active');
             
             setTimeout(() => {
@@ -263,12 +330,10 @@
             playSound('success');
             document.getElementById('section-loader').classList.remove('active');
             document.getElementById('section-final').classList.add('active');
-            // Selección aleatoria corregida de la lista
             document.getElementById('key-output').textContent = validKeys[Math.floor(Math.random() * validKeys.length)];
             startTimer(24 * 60 * 60); 
         }
 
-        // --- TEMPORIZADOR ---
         function startTimer(duration) {
             let timer = duration, hours, minutes, seconds;
             const display = document.getElementById('countdown');
@@ -293,7 +358,6 @@
             }, 1000);
         }
 
-        // --- COPIAR Y TELEGRAM ---
         function copyToClipboard() {
             playSound('success');
             const keyText = document.getElementById('key-output').textContent;

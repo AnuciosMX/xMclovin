@@ -61,7 +61,6 @@
             <div class="subtitle">SECURITY ACCESS SYSTEM</div>
         </header>
 
-        <!-- SECCIÓN 1 -->
         <div id="section1" class="section-flow active">
             <button class="btn-premium" id="sub-btn-1" onclick="verifyAction(this, 1)">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -70,7 +69,6 @@
             <button class="btn-premium btn-secondary" id="btn-next-1" disabled onclick="transitionToSection(1, 2)">CONTINUAR</button>
         </div>
 
-        <!-- SECCIÓN 2 -->
         <div id="section2" class="section-flow">
             <button class="btn-premium" id="sub-btn-2" onclick="verifyAction(this, 2)">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -83,7 +81,6 @@
             <button class="btn-premium btn-secondary" id="btn-next-2" disabled onclick="transitionToSection(2, 3)">AVANZAR</button>
         </div>
 
-        <!-- SECCIÓN 3 -->
         <div id="section3" class="section-flow">
             <button class="btn-premium" id="sub-btn-4" onclick="verifyAction(this, 4)">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -96,7 +93,6 @@
             <button class="btn-premium" id="btn-final-unlock" disabled style="background:#ff0055; color:#fff;" onclick="transitionToLoader()">GENERAR KEY</button>
         </div>
 
-        <!-- PANTALLA GENERAL DE CARGA / VERIFICACIÓN -->
         <div id="section-loader" class="section-flow">
             <div class="loader-content">
                 <div class="spinner"></div>
@@ -104,7 +100,6 @@
             </div>
         </div>
 
-        <!-- SECCIÓN FINAL -->
         <div id="section-final" class="section-flow">
             <h3 style="text-align:center; font-size: 14px;">LLAVE GENERADA Por xMclovin Vip ✅</h3>
             <div class="key-box" id="key-output">...</div>
@@ -122,12 +117,16 @@
     <footer>[ xMclovin DEVELOPER &copy; 2026 ]</footer>
 
     <script>
-        const validKeys = "Hyper-SYS-00FF9D2A", "Hyper-BYPASS-7F4A88C1", "Hyper-CORE-3301X999", 
-"Hyper-SHIELD-V77X8492", "Hyper-NET-884967A0B2", "xMclo-TOKEN-FF9D2A8C", 
-"xMclo-SERVER-00FFCC77", "xMclo-INJECT-7D364F41", "xMclo-PROXY-A3B9E82D", 
-"xMclo-TUNNEL-EFFF9900", "Hyper-LATENCY-X99MAX72", "Hyper-FAKELAG-Z77LAG01", 
-"xMclo-OVERRIDE-HACK44A7", "xMclo-KERNEL-ULTRA0X1", "xMclo-ROOTACCESS-DEV99"
-let count = 0;
+        // CORRECCIÓN AQUÍ: Se añadieron los corchetes [ ] para convertirlo en una lista (Array) válida de JavaScript
+        const validKeys = [
+            "Hyper-SYS-00FF9D2A", "Hyper-BYPASS-7F4A88C1", "Hyper-CORE-3301X999", 
+            "Hyper-SHIELD-V77X8492", "Hyper-NET-884967A0B2", "xMclo-TOKEN-FF9D2A8C", 
+            "xMclo-SERVER-00FFCC77", "xMclo-INJECT-7D364F41", "xMclo-PROXY-A3B9E82D", 
+            "xMclo-TUNNEL-EFFF9900", "Hyper-LATENCY-X99MAX72", "Hyper-FAKELAG-Z77LAG01", 
+            "xMclo-OVERRIDE-HACK44A7", "xMclo-KERNEL-ULTRA0X1", "xMclo-ROOTACCESS-DEV99"
+        ];
+        
+        let count = 0;
         let currentSectionId = 1;
 
         // --- SISTEMA DE AUDIO ---
@@ -252,7 +251,7 @@ let count = 0;
             playSound('click');
             document.getElementById('section3').classList.remove('active');
             
-            document.getElementById('loader-message').textContent = "Generando Llave Segura...";
+            document.getElementById('loader-message').textContent = "Generando Llave Segura... ";
             document.getElementById('section-loader').classList.add('active');
             
             setTimeout(() => {
@@ -264,6 +263,7 @@ let count = 0;
             playSound('success');
             document.getElementById('section-loader').classList.remove('active');
             document.getElementById('section-final').classList.add('active');
+            // Selección aleatoria corregida de la lista
             document.getElementById('key-output').textContent = validKeys[Math.floor(Math.random() * validKeys.length)];
             startTimer(24 * 60 * 60); 
         }

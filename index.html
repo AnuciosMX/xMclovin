@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,7 +27,7 @@
             25%, 75% { text-shadow: 1px -1px 4px rgba(255,255,255,0.5); }
         }
 
-        .status-bar { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #00ff55; margin-bottom: 15px; text-transform: uppercase; }
+        .status-bar { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #00ff55; margin-bottom: 15px; text-transform: uppercase; font-family: monospace; }
         .status-dot { width: 6px; height: 6px; background-color: #00ff55; border-radius: 50%; box-shadow: 0 0 8px #00ff55; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
@@ -34,7 +35,7 @@
         .section-flow { display: none; width: 100%; max-width: 360px; background: rgba(10, 20, 35, 0.85); border: 2px solid rgba(0, 150, 255, 0.4); border-radius: 15px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(0, 150, 255, 0.2), 0 0 20px rgba(0, 150, 255, 0.3); backdrop-filter: blur(8px); }
         .section-flow.active { display: block; animation: fadeIn 0.5s ease; }
 
-        .btn-premium { display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff; color: #000; border: none; padding: 14px; font-size: 12px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; text-transform: uppercase; margin-bottom: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .btn-premium { display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff; color: #000; border: none; padding: 14px; font-size: 12px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; text-transform: uppercase; margin-bottom: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-family: monospace; letter-spacing: 1px; }
         .btn-premium:disabled { background: #222; color: #555; cursor: not-allowed; border: none; }
         .btn-premium svg { width: 16px; height: 16px; fill: currentColor; }
         .btn-secondary { background: transparent; border: 1px solid #444; color: #fff; box-shadow: none; }
@@ -47,21 +48,47 @@
         
         .btn-comunidad { background: transparent; border: 1px solid #0088cc; color: #0088cc; margin-bottom: 0; }
         .btn-comunidad:hover { background: rgba(0, 136, 204, 0.1); }
+        
+        .btn-whatsapp { background: transparent; border: 1px solid #25D366; color: #25D366; margin-bottom: 0; }
+        .btn-whatsapp:hover { background: rgba(37, 211, 102, 0.1); }
 
-        .timer-box { font-size: 11px; color: #aaa; text-align: center; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; }
+        .community-container { display: flex; gap: 8px; margin-top: 5px; }
+        .community-container .btn-premium { flex: 1; padding: 10px 5px; font-size: 10px; }
+
+        .timer-box { font-size: 11px; color: #aaa; text-align: center; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; font-family: monospace; }
         .timer-box span { color: #ff0055; font-weight: bold; font-family: monospace; }
 
         /* Pantallas de Carga */
         .loader-content { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px 0; }
         .spinner { width: 40px; height: 40px; border: 4px solid rgba(255, 255, 255, 0.1); border-top-color: #ff0055; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 15px; }
-        .loader-text { font-size: 11px; color: #aaa; letter-spacing: 2px; text-transform: uppercase; text-align: center; font-weight: 600; }
+        .loader-text { font-size: 11px; color: #aaa; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; font-weight: 600; line-height: 1.5; font-family: 'Segoe UI', Roboto, sans-serif; }
+        .loader-timer-num { font-size: 24px; color: #00ffff; font-weight: bold; margin: 10px 0; font-family: monospace; text-shadow: 0 0 10px #00ffff; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* MODAL DE INICIO */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(2, 5, 10, 0.9); z-index: 999; display: flex; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px); }
+        .modal-box { width: 100%; max-width: 360px; background: rgba(10, 20, 35, 0.95); border: 2px solid rgba(0, 255, 255, 0.5); border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 0 25px rgba(0, 255, 255, 0.2); }
+        .modal-box p { font-size: 12px; color: #fff; margin-bottom: 20px; line-height: 1.5; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-family: 'Segoe UI', Roboto, sans-serif; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
-        footer { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 9px; color: #444; z-index: 2; letter-spacing: 2px; }
+        footer { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 9px; color: #444; z-index: 2; letter-spacing: 2px; font-family: monospace; }
     </style>
 </head>
 <body>
+
+    <!-- MODAL DE BIENVENIDA ORIGINAL -->
+    <div id="modal-inicio" class="modal-overlay">
+        <div class="modal-box">
+            <h1 style="font-size: 18px; margin-bottom: 15px;">AVISO IMPORTANTE</h1>
+            <p>Keys actualizadas de los nuevos fake lag que se suben al canal.</p>
+            <button class="btn-premium" style="background:#25D366; color:#000;" onclick="irAWhatsAppInicio()">
+                IR A WHATSAPP 📲
+            </button>
+            <button class="btn-premium btn-secondary" onclick="cerrarModalInicio()">
+                CONTINUAR GENERANDO KEY 🔑
+            </button>
+        </div>
+    </div>
 
     <canvas id="particles-canvas"></canvas>
 
@@ -107,11 +134,15 @@
             <button class="btn-premium" id="btn-final-unlock" disabled style="background:#ff0055; color:#fff;" onclick="transitionToLoader()">GENERAR KEY</button>
         </div>
 
-        <!-- PANTALLA GENERAL DE CARGA / VERIFICACIÓN -->
+        <!-- PANTALLA GENERAL DE CARGA / VERIFICACIÓN / WHATSAPP ORIGINAL -->
         <div id="section-loader" class="section-flow">
             <div class="loader-content">
                 <div class="spinner"></div>
                 <div class="loader-text" id="loader-message">Generando Llave Segura...</div>
+                <div class="loader-timer-num" id="loader-timer" style="display:none;">10s</div>
+                <button class="btn-premium" id="btn-continue-loader" style="display:none; background:#00ffff; color:#000; margin-top:10px;" onclick="cancelarRedireccionYGenerar()">
+                    CONTINUAR ➡️
+                </button>
             </div>
         </div>
 
@@ -122,18 +153,23 @@
             <div class="timer-box">La llave expira en: <span id="countdown">24:00:00</span></div>
             <button class="btn-premium" id="btn-copy" style="background:#00ffff; color:#000;" onclick="copyToClipboard()">COPIAR KEY 📋</button>
             
-            <div class="telegram-notice">Únanse al nuevo grupo de telegram para nuevas actualizaciones</div>
-            <button class="btn-premium btn-comunidad" onclick="irAComunidad()">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.74 7.59-3.27 3.6-1.5 4.35-1.76 4.84-1.77.11 0 .35.03.5.16.13.1.16.24.18.34.02.13.02.27 0 .42z"/></svg>
-                GRUPO DE TELEGRAM 🚀
-            </button>
+            <div class="telegram-notice">Únanse a los grupos para nuevas actualizaciones</div>
+            <div class="community-container">
+                <button class="btn-premium btn-comunidad" onclick="irAComunidad()">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.66-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.74 7.59-3.27 3.6-1.5 4.35-1.76 4.84-1.77.11 0 .35.03.5.16.13.1.16.24.18.34.02.13.02.27 0 .42z"/></svg>
+                    TELEGRAM 🚀
+                </button>
+                <button class="btn-premium btn-whatsapp" onclick="irAWhatsApp()">
+                    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                    WHATSAPP 📲
+                </button>
+            </div>
         </div>
     </div>
 
     <footer>[ xMclovin DEVELOPER &copy; 2026 ]</footer>
 
     <script>
-        // CORREGIDO: Declarado correctamente usando corchetes de array []
         const validKeys = [
             "Hyper-SYS-00FF9D2A", "Hyper-BYPASS-7F4A88C1", "Hyper-CORE-3301X999", 
             "Hyper-SHIELD-V77X8492", "Hyper-NET-884967A0B2", "xMclo-TOKEN-FF9D2A8C", 
@@ -142,8 +178,25 @@
             "xMclo-OVERRIDE-HACK44A7", "xMclo-KERNEL-ULTRA0X1", "xMclo-ROOTACCESS-DEV99"
         ];
         
+        const LINK_WHATSAPP = "https://whatsapp.com/channel/0029Vb8cKi0BvvskIbpU9u1L";
+        const LINK_TELEGRAM = "https://t.me/+3MQ7fkTJPn5mNDZh";
+
         let count = 0;
         let currentSectionId = 1;
+        let autoRedirectTimeout = null;
+        let redirectInterval = null;
+
+        // --- MANEJO DE MODAL INICIAL ---
+        function cerrarModalInicio() {
+            playSound('click');
+            document.getElementById('modal-inicio').style.display = 'none';
+        }
+
+        function irAWhatsAppInicio() {
+            playSound('click');
+            window.open(LINK_WHATSAPP, "_blank");
+            cerrarModalInicio();
+        }
 
         // --- SISTEMA DE AUDIO ---
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -188,15 +241,13 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
-            // Generar nodos de la red
             points = Array.from({length: 45}, () => ({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.4, // Movimiento lento
+                vx: (Math.random() - 0.5) * 0.4,
                 vy: (Math.random() - 0.5) * 0.4
             }));
 
-            // Configurar 2 serpientes que se persiguen
             snakes = [
                 { angle: 0, radius: 90, speed: 0.015, hue: 0, history: [] },
                 { angle: Math.PI, radius: 75, speed: 0.012, hue: 180, history: [] }
@@ -206,7 +257,6 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // 1. Dibujar Red de Partículas
             ctx.fillStyle = "rgba(0, 150, 255, 0.5)";
             points.forEach((p, i) => {
                 p.x += p.vx;
@@ -219,7 +269,6 @@
                 ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Conectar líneas con nodos cercanos
                 for (let j = i + 1; j < points.length; j++) {
                     let dx = points[j].x - p.x;
                     let dy = points[j].y - p.y;
@@ -236,7 +285,6 @@
                 }
             });
 
-            // 2. Dibujar las Serpientes Pequeñas Girando Cambiando de Color Lento
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
 
@@ -244,19 +292,16 @@
                 snake.angle += snake.speed;
                 snake.hue = (snake.hue + 0.5) % 360;
 
-                // Coordenadas actuales orbitando el centro
                 let sx = centerX + Math.cos(snake.angle) * snake.radius;
                 let sy = centerY + Math.sin(snake.angle) * snake.radius;
 
-                // Guardar rastro del cuerpo
                 snake.history.push({ x: sx, y: sy });
                 if (snake.history.length > 12) {
                     snake.history.shift();
                 }
 
-                // Dibujar segmentos de la serpiente
                 snake.history.forEach((pos, idx) => {
-                    let size = (idx / snake.history.length) * 4.5; // Cabeza más grande que la cola
+                    let size = (idx / snake.history.length) * 4.5;
                     ctx.beginPath();
                     ctx.fillStyle = `hsl(${snake.hue}, 100%, 60%)`;
                     ctx.arc(pos.x, pos.y, size, 0, Math.PI * 2);
@@ -280,6 +325,8 @@
             currentSection.classList.remove('active');
             
             document.getElementById('loader-message').textContent = "Verificando Suscripción...";
+            document.getElementById('loader-timer').style.display = "none";
+            document.getElementById('btn-continue-loader').style.display = "none";
             document.getElementById('section-loader').classList.add('active');
 
             setTimeout(() => {
@@ -304,6 +351,8 @@
             document.getElementById('section' + current).classList.remove('active');
             
             document.getElementById('loader-message').textContent = "Validando Accesos del Servidor...";
+            document.getElementById('loader-timer').style.display = "none";
+            document.getElementById('btn-continue-loader').style.display = "none";
             document.getElementById('section-loader').classList.add('active');
 
             setTimeout(() => {
@@ -314,20 +363,49 @@
             }, 2000);
         }
 
+        // TRANSICIÓN AL LOADER CON REDIRECCIÓN A WHATSAPP Y TEXTO ORIGINAL
         function transitionToLoader() {
             playSound('click');
             document.getElementById('section3').classList.remove('active');
             
-            document.getElementById('loader-message').textContent = "Generando Llave Segura...";
+            const loaderMsg = document.getElementById('loader-message');
+            const loaderTimer = document.getElementById('loader-timer');
+            const btnContinue = document.getElementById('btn-continue-loader');
+
+            loaderMsg.textContent = "Keys actualizadas de los nuevos fake lag que se suben al canal, a continuación serás redirigido automáticamente al grupo de WhatsApp...";
+            loaderTimer.style.display = "block";
+            btnContinue.style.display = "flex";
+            
             document.getElementById('section-loader').classList.add('active');
             
-            setTimeout(() => {
+            let timeLeft = 10;
+            loaderTimer.textContent = timeLeft + "s";
+
+            redirectInterval = setInterval(() => {
+                timeLeft--;
+                loaderTimer.textContent = timeLeft + "s";
+                if(timeLeft <= 0) {
+                    clearInterval(redirectInterval);
+                }
+            }, 1000);
+
+            autoRedirectTimeout = setTimeout(() => {
+                window.open(LINK_WHATSAPP, "_blank");
                 generateKey();
-            }, 2000);
+            }, 10000);
+        }
+
+        function cancelarRedireccionYGenerar() {
+            playSound('click');
+            if(autoRedirectTimeout) clearTimeout(autoRedirectTimeout);
+            if(redirectInterval) clearInterval(redirectInterval);
+            generateKey();
         }
 
         function generateKey() {
             playSound('success');
+            document.getElementById('loader-timer').style.display = "none";
+            document.getElementById('btn-continue-loader').style.display = "none";
             document.getElementById('section-loader').classList.remove('active');
             document.getElementById('section-final').classList.add('active');
             document.getElementById('key-output').textContent = validKeys[Math.floor(Math.random() * validKeys.length)];
@@ -376,7 +454,12 @@
 
         function irAComunidad() {
             playSound('click');
-            window.open("https://t.me/+3MQ7fkTJPn5mNDZh", "_blank"); 
+            window.open(LINK_TELEGRAM, "_blank"); 
+        }
+
+        function irAWhatsApp() {
+            playSound('click');
+            window.open(LINK_WHATSAPP, "_blank"); 
         }
     </script>
 </body>
